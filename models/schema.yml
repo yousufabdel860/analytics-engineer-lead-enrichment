@@ -1,0 +1,67 @@
+version: 2
+
+models:
+  - name: dim_lead
+    description: "Lead dimension containing all unique leads across sources with Salesforce as the primary source"
+    columns:
+      - name: lead_key
+        description: "Surrogate key for the lead dimension"
+        tests:
+          - unique
+          - not_null
+      
+      - name: business_name
+        description: "Company or facility name"
+      
+      - name: phone
+        description: "Standardized phone number - primary matching identifier"
+      
+      - name: email
+        description: "Standardized email address - secondary matching identifier"
+        
+      - name: source_system
+        description: "System where this lead originated"
+
+  - name: dim_source
+    description: "Source system dimension containing information about each data source"
+    columns:
+      - name: source_key
+        description: "Primary key for source systems"
+        tests:
+          - unique
+          - not_null
+
+  - name: fact_lead_match
+    description: "Fact table documenting lead matches, duplicates, and net-new lead identification"
+    columns:
+      - name: lead_key
+        description: "Foreign key to dim_lead"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_lead')
+              field: lead_key
+              
+      - name: source_key
+        description: "Foreign key to dim_source"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_source')
+              field: source_key
+      
+      - name: status_key
+        description: "Lead status (from Salesforce or 'Not In Salesforce' for external leads)"
+      
+      - name: is_duplicate_in_salesforce
+        description: "Flag for duplicate leads in Salesforce based on phone or email"
+        tests:
+          - not_null
+      
+      - name: is_net_new
+        description: "Flag for net-new leads from external sources"
+        tests:
+          - not_null
+      
+      - name: match_confidence
+        description: "Confidence score for the match quality (0.0-1.0)"
