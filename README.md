@@ -115,11 +115,17 @@ My systematic exploration of the source data informed the dimensional modeling a
 
 ## Testing and Data Validation
 
-The model includes these quality measures:
+**Implemented Testing Approach**
 
-- Schema tests for primary key uniqueness and referential integrity
-- Custom business rule tests to validate match logic
-- Field standardization for consistent comparison
-- Logical validation to prevent contradictory flags
+The current implementation includes foundational quality measures focused on the most critical aspects of the model:
 
+- **Schema Tests:** Basic tests ensuring primary key uniqueness in dimension tables and referential integrity between facts and dimensions
+- **Custom Business Logic Test:** A targeted test validating our core lead matching logic, specifically checking that:
+    - No lead is flagged as both duplicate and net-new (logical contradiction)
+    - External source leads are properly identified as net-new
+    - Salesforce leads are never incorrectly marked as net-new
+- **Data Standardization:** Consistent transformation patterns for phone numbers and emails to ensure reliable comparison
+- **Logical Flag Validation:** Verification that flag values in the fact table maintain logical consistency
+
+These tests focus on validating the core functionality that directly supports the primary business question about duplicate and net-new lead identification.
 
