@@ -59,20 +59,19 @@ This dimensional model makes it easy to answer key business questions with strai
 ### 1. Are there duplicate/net-new leads based on phone (primary identifier)?
 
 #### Identify duplicate leads in Salesforce
-sql
 SELECT
-l.lead_key,
-l.business_name,
-l.phone,
-l.email
+    l.lead_key,
+    l.business_name,
+    l.phone,
+    l.email
 FROM
-fact_lead_match f
+    fact_lead_match f
 JOIN
-dim_lead l ON f.lead_key = l.lead_key
+    dim_lead l ON f.lead_key = l.lead_key
 WHERE
-f.is_duplicate_in_salesforce = true
+    f.is_duplicate_in_salesforce = true
 ORDER BY
-l.email, l.phone;
+    l.email, l.phone;
 
 #### Identify net-new leads from external sources
 sql
