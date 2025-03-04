@@ -135,7 +135,7 @@ The current implementation includes foundational quality measures focused on the
 - **Data Standardization:** Consistent transformation patterns for phone numbers and emails to ensure reliable comparison
 - **Logical Flag Validation:** Verification that flag values in the fact table maintain logical consistency
 
-These tests focus on validating the core functionality that directly supports the primary business question about duplicate and net-new lead identification.
+These tests focus on validating the core functionality that directly supports the primary business questions identified. 
 
 ## Business Questions Addressed
 
