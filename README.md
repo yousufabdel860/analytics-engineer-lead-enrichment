@@ -106,7 +106,7 @@ My systematic exploration of the source data informed the dimensional modeling a
 4. **Matching Algorithm Development and Testing:**
     - Experimented with different matching criteria to balance precision and recall
     - Tested exact vs. partial matching strategies for different field types
-    - Developed a multi-pass approach starting with the highes confidence matches
+    - Developed a multi-pass approach starting with the highest confidence matches
     - Created validation test cases to verify matching effectiveness
 
 5. **Business Rule Extraction:**
@@ -154,7 +154,7 @@ FROM
 JOIN 
     dim_lead l ON f.lead_key = l.lead_key
 WHERE 
-    f.is_duplicate_in_salesforce = true;
+    f.is_duplicate_in_salesforce = true
 ORDER BY
     l.email, l.phone;
 ```
