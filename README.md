@@ -1,6 +1,6 @@
 # Lead Enrichment DBT Project
 
-A dimensional modeling approach to standardize and enrich lead data from multiple sources for improved analytics and decision making.
+A dimensional modeling approach to standardize and enrich lead data from multiple sources for improved analytics and decision-making.
 
 ## Project Overview    
 
@@ -18,12 +18,12 @@ Given the 2-hour constraint, I made these strategic trade-offs:
 ### What I Prioritized
 
 - **Core dimensional structure with immediate extensibility:** I implemented a proper
-star schema design with dimension and fact tables, but deliberately organized the code in a way that allows for easy addition of new sources and attributes. This approach allows for both immediate business value and a scalable foundation. The dimension tables are structured with surrogate keys and clear entity defintions that make relationship maintenance straightforward as the model evolves.
-- **Modular transformation lgoic with clear responsibility boundaries:** I seperated 
-standardization (staging models) from business logic (dimensional models) to create clean layers of abstration. Each layer has a distinct responsibility: staging handles 
-standardization and cleaning, while dimensional models focus on business rules and relationships. This seperation makes the solution more maintainable and ensure changes to source formats won't break downstream analytics.
-- **Critical business logic for lead matching with clear lineage:** I focused on implementing robust duplicate and net-new lead identification using phone and email matching, as these deliver the highest immediate business value. The matching logic is designed to be both accurate and explainable to business users. I deliberately structured the matching in a way that allows for clear auditing of results and iterative refinement over time.
-- **Reusuable patterns rather than one-off solutions:** I created consistent transformation patterns that can be applied across all sources, rather than source-specefic logic. This makes adding new sources more straightforward and reduces technical debt. The standardization of phone numbers, emails, and other attributes follows a consistent approach that can be extended to any new source with minimal adaptation.
+star schema design with dimension and fact tables but deliberately organized the code in a way that allows for easy addition of new sources and attributes. This approach allows for both immediate business value and a scalable foundation. The dimension tables are structured with surrogate keys and clear entity definitions that make relationship maintenance straightforward as the model evolves.
+- **Modular transformation logic with clear responsibility boundaries:** I separated 
+standardization (staging models) from business logic (dimensional models) to create clean layers of abstraction. Each layer has a distinct responsibility: staging handles 
+standardization and cleaning, while dimensional models focus on business rules and relationships. This separation makes the solution more maintainable and ensures changes to source formats won't break downstream analytics.
+- **Critical business logic for lead matching with clear lineage:** I focused on implementing robust duplicate and net-new lead identification using phone and email matching, as these deliver the highest immediate business value. The matching logic is designed to be both accurate and explainable to business users. I deliberately structured the matching to allow for clear auditing of results and iterative refinement over time.
+- **Reusable patterns rather than one-off solutions:** I created consistent transformation patterns that can be applied across all sources, rather than source-specific  logic. This makes adding new sources more straightforward and reduces technical debt. The standardization of phone numbers, emails, and other attributes follows a consistent approach that can be extended to any new source with minimal adaptation.
 - **Selective testing focused on business-critical logic:** I implemented targeted tests for the most important business rules (duplicate detection logic, net-new classification) rather than attempting comprehensive testing. This ensures the core functionality is reliable while staying within time constraints. These tests verify that the business logic works as expected, providing confidence in the results without excessive test coverage.
 
 
@@ -40,7 +40,7 @@ With additional time, I would enhance the solution in these key areas:
 - **Comprehensive data quality framework with proactive monitoring**: I would create a more robust testing framework including source-to-target reconciliation, data profiling with distribution analysis, and quality score calculations for each lead record to ensure consistent, high-quality data. This would include automated alerting for anomaly detection and data quality dashboards showing trends over time.
 - **Incremental processing with full change history:** While the current solution handles full refreshes, I would add change data capture patterns to efficiently process incremental updates and track historical changes using SCD Type 2 techniques when appropriate. This would create a full audit trail of lead changes over time, enabling historical analysis while optimizing processing efficiency.
 - **Business-facing analytical views with domain-specific terminology:** I would create denormalized, business-friendly views designed specifically for sales team consumption patterns, with appropriate business terminology and calculated fields to drive adoption. These views would be optimized for specific use cases like territory management, lead prioritization, and campaign analysis.
-- **Performance optimization for enterprise scale:** For larger data volumes, I would implement proper indexing strategies, clustering keys, and query optimization techniques to ensure the solution scales efficiently as data grows. This would include benchmarking common query patterns and optimizing materialization strategies (table vs view) based on actual usage patterns.
+- **Performance optimization for enterprise-scale:** For larger data volumes, I would implement proper indexing strategies, clustering keys, and query optimization techniques to ensure the solution scales efficiently as data grows. This would include benchmarking common query patterns and optimizing materialization strategies (table vs view) based on actual usage patterns.
 
 ## Long-Term ETL Strategy
 
@@ -72,7 +72,7 @@ For a production implementation, I recommend:
 - Create role-specific views tailored to different business functions (sales, marketing, operations)
 - Develop comprehensive data dictionaries with business definitions and example usage
 - Implement training materials and knowledge base for self-service analytics
-- Establish feedback mechanisms to continuously improve business value delivery
+- Establish feedback mechanisms to improve business value delivery continuously
 
 **Performance and Scalability:**
 
@@ -98,7 +98,7 @@ My systematic exploration of the source data informed the dimensional modeling a
     - Created a hierarchy of fallback identifiers to maximize match coverage
 
 3. **Data Quality and Standardization Assessment:**
-    - Profiled key fields to identify format inconsistencies (especially in phone, email)
+    - Profiled key fields to identify format inconsistencies (especially in phone, and email)
     - Analyzed null values and their distribution to understand data completeness
     - Identified duplicate patterns within each source to inform matching strategies
     - Developed standardization approaches for consistent cross-source comparison
@@ -106,7 +106,7 @@ My systematic exploration of the source data informed the dimensional modeling a
 4. **Matching Algorithm Development and Testing:**
     - Experimented with different matching criteria to balance precision and recall
     - Tested exact vs. partial matching strategies for different field types
-    - Developed a multi-pass approach starting with highest confidence matches
+    - Developed a multi-pass approach starting with the highes confidence matches
     - Created validation test cases to verify matching effectiveness
 
 5. **Business Rule Extraction:**
@@ -141,7 +141,7 @@ These tests focus on validating the core functionality that directly supports th
 
 This dimensional model makes it easy to answer key business questions with straightforward SQL queries:
 
-1. **Are there duplicate leads based on phone (primary identifier) in Salesforce ?**
+1. **Are there duplicate leads based on the phone (primary identifier) in Salesforce ?**
 ```sql
 -- Identify duplicate leads in Salesforce
 SELECT
@@ -213,7 +213,7 @@ GROUP BY
 
 5. **What percentage of existing leads are being worked?**
 ```sql
--- Find percentage of existing leads being worked
+-- Find the percentage of existing leads being worked
 SELECT 
     COUNT(CASE WHEN l.status IN ('Working', 'Assigned', 'Connected') THEN 1 END) * 100.0 / COUNT(*) as percentage_being_worked
 FROM 
@@ -222,7 +222,7 @@ WHERE
     l.source_system = 'salesforce';
 ```
 
-6. **Which source gives the best performing leads?**
+6. **Which source gives the best-performing leads?**
 ```sql
 -- Where do the best leads come from
 SELECT 
