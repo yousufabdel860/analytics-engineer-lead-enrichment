@@ -1,0 +1,19 @@
+version: 2
+
+sources:
+  - name: raw_data
+    description: "Raw data sources for lead enrichment pipeline"
+    database: LEAD_ENRICHMENT  # Snowflake database location
+    schema: RAW_DATA           # Schema containing source tables
+    tables:
+      - name: SALESFORCE_LEADS
+        description: "Daily lead data from Salesforce CRM"
+        
+      - name: NEVADA_FACILITIES
+        description: "Monthly data of Nevada childcare facilities"
+        
+      - name: OKLAHOMA_FACILITIES
+        description: "Monthly data of Oklahoma childcare facilities"
+        
+      - name: TEXAS_OPERATIONS
+        description: "Monthly data of Texas childcare operations"
