@@ -7,6 +7,10 @@ A dimensional modeling approach to standardize and enrich lead data from multipl
 This project implements a dimensional model that consolidates lead information from Salesforce and three external sources (Nevada, Oklahoma, and Texas facilities) to 
 improve the accuracy of customer data, drive more efficient lead management, and maximize sales team effectiveness.
 
+## Data Model ERD
+![Screen Shot 2025-03-04 at 1 31 37 PM](https://github.com/user-attachments/assets/1595bff7-023e-428d-bd81-5203ec9ee851)
+
+
 ## Trade-Offs and Limitations
 
 Given the 2-hour constraint, I made these strategic trade-offs:
