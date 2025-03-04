@@ -1,0 +1,37 @@
+# Lead Enrichment DBT Project
+# Created for Analytics Engineer Exercise
+
+name: 'lead_enrichment'
+version: '1.0.0'
+config-version: 2
+
+# Connection profile reference
+profile: 'lead_enrichment'
+
+# Directory Paths
+model-paths: ["models"]
+test-paths: ["tests"]
+
+# Build artifacts location
+target-path: "target"
+clean-targets:
+  - "target"
+
+# Model configuration
+models:
+  lead_enrichment:
+    # Staging layer - standardizes raw data
+    staging:
+      +materialized: view # Using views for transformation efficiency
+
+    # Dimensions layer - defines lead attributes
+    dimensions:
+      +materialized: table # Tables for lookup performance
+
+    # Facts layer - captures lead interactions
+    facts:
+      +materialized: table # Tables for analytical queries
+
+# Test configuration
+tests:
+  +enabled: true
