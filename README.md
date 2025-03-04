@@ -78,10 +78,10 @@ For a production implementation, I recommend:
 My systematic exploration of the source data informed the dimensional modeling approach:
 
 1. **Source Structure Analysis:**
-  - Conducted detailed field analysis across all sources to understand data types, patterns, and semantics
-  - Documented primary and foreign key relationships within each source system
-  - Identified critical business fields vs. operational metadata
-  - Mapped conceptual entities across different source representations
+    - Conducted detailed field analysis across all sources to understand data types, patterns, and semantics
+    - Documented primary and foreign key relationships within each source system
+    - Identified critical business fields vs. operational metadata
+    - Mapped conceptual entities across different source representations
 
 2. **Cross-Source Relationship Identification:**
     - Evaluated potential joining fields (phone, email, business name) for match effectiveness
