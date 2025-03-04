@@ -78,40 +78,40 @@ For a production implementation, I recommend:
 My systematic exploration of the source data informed the dimensional modeling approach:
 
 1. **Source Structure Analysis:**
-- Conducted detailed field analysis across all sources to understand data types, patterns, and semantics
-- Documented primary and foreign key relationships within each source system
-- Identified critical business fields vs. operational metadata
-- Mapped conceptual entities across different source representations
+  - Conducted detailed field analysis across all sources to understand data types, patterns, and semantics
+  - Documented primary and foreign key relationships within each source system
+  - Identified critical business fields vs. operational metadata
+  - Mapped conceptual entities across different source representations
 
 2. **Cross-Source Relationship Identification:**
-- Evaluated potential joining fields (phone, email, business name) for match effectiveness
-- Analyzed the uniqueness and completeness of each identifier across sources
-- Determined phone numbers provided the highest match reliability as primary identifiers
-- Created a hierarchy of fallback identifiers to maximize match coverage
+    - Evaluated potential joining fields (phone, email, business name) for match effectiveness
+    - Analyzed the uniqueness and completeness of each identifier across sources
+    - Determined phone numbers provided the highest match reliability as primary identifiers
+    - Created a hierarchy of fallback identifiers to maximize match coverage
 
 3. **Data Quality and Standardization Assessment:**
-- Profiled key fields to identify format inconsistencies (especially in phone, email)
-- Analyzed null values and their distribution to understand data completeness
-- Identified duplicate patterns within each source to inform matching strategies
-- Developed standardization approaches for consistent cross-source comparison
+    - Profiled key fields to identify format inconsistencies (especially in phone, email)
+    - Analyzed null values and their distribution to understand data completeness
+    - Identified duplicate patterns within each source to inform matching strategies
+    - Developed standardization approaches for consistent cross-source comparison
 
 4. **Matching Algorithm Development and Testing:**
-- Experimented with different matching criteria to balance precision and recall
-- Tested exact vs. partial matching strategies for different field types
-- Developed a multi-pass approach starting with highest confidence matches
-- Created validation test cases to verify matching effectiveness
+    - Experimented with different matching criteria to balance precision and recall
+    - Tested exact vs. partial matching strategies for different field types
+    - Developed a multi-pass approach starting with highest confidence matches
+    - Created validation test cases to verify matching effectiveness
 
 5. **Business Rule Extraction:**
-- Identified implied business rules in each source system
-- Documented status value mappings and their business significance
-- Analyzed lead lifecycle patterns to understand status transitions
-- Determined which source should be considered authoritative for each attribute
+    - Identified implied business rules in each source system
+    - Documented status value mappings and their business significance
+    - Analyzed lead lifecycle patterns to understand status transitions
+    - Determined which source should be considered authoritative for each attribute
 
 6. **Dimensional Model Prototyping:**
-- Sketched dimensional model alternatives to evaluate different approaches
-- Tested query patterns to ensure the model would support business requirements
-- Validated that the design could accommodate future sources and attributes
-- Refined the model based on exploration insights
+    - Sketched dimensional model alternatives to evaluate different approaches
+    - Tested query patterns to ensure the model would support business requirements
+    - Validated that the design could accommodate future sources and attributes
+    - Refined the model based on exploration insights
 
 ## Testing and Data Validation
 
