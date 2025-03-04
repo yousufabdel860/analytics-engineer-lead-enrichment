@@ -137,3 +137,22 @@ The current implementation includes foundational quality measures focused on the
 
 These tests focus on validating the core functionality that directly supports the primary business question about duplicate and net-new lead identification.
 
+## Business Questions Addressed
+
+This dimensional model makes it easy to answer key business questions with straightforward SQL queries:
+
+1. **Are there duplicate/net-new leads based on phone (primary identifier)?**
+```sql
+SELECT 
+    l.business_name, 
+    l.phone, 
+    l.email
+FROM 
+    fact_lead_match f
+JOIN 
+    dim_lead l ON f.lead_key = l.lead_key
+WHERE 
+    f.is_duplicate_in_salesforce = true;
+```
+
+
